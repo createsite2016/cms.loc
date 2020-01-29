@@ -50,14 +50,55 @@ class UrlDispatcher
     }
 
     /**
-     * Регистрирует наши роуты
+     * Регистрирует наши роуты, когда происходит запрос в браузер
      * @param $method
      * @param $pattern
      * @param $controller
      */
     public function register($method, $pattern, $controller)
     {
-        $this->routes[strtoupper($method)][$pattern] = $controller;
+        $convert = $this->convertPattern($pattern);
+        $this->routes[strtoupper($method)][$convert] = $controller;
+    }
+
+    /**
+     * @param $pattern
+     * @return string|string[]|null
+     */
+    private function convertPattern($pattern)
+    {
+        if(strpos($pattern, '(') === false)
+        {
+            return $pattern;
+        }
+
+        return preg_replace_callback('#\((\w+):(\w+)\)#',[$this, 'replacePattern'], $pattern);
+    }
+
+    /**
+     * @param $matches
+     * @return string
+     */
+    private function replacePattern($matches)
+    {
+        return '(?<' .$matches[1]. '>'.strtr($matches[2], $this->patterns).')';
+    }
+
+    /**
+     * @param $parameters
+     * @return mixed
+     */
+    private function processParam($parameters)
+    {
+        foreach ($parameters as $key => $value)
+        {
+            if(is_int($key))
+            {
+                unset($parameters[$key]);
+            }
+        }
+
+        return $parameters;
     }
 
     /**
@@ -91,7 +132,7 @@ class UrlDispatcher
 
             if(preg_match($pattern, $uri, $parameters))
             {
-                return new DispatchedRoute($controller, $parameters);
+                return new DispatchedRoute($controller, $this->processParam($parameters));
             }
         }
     }
