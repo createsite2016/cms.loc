@@ -4,15 +4,24 @@
 namespace Engine;
 
 
+use Engine\DI\DI;
+
 abstract class Controller
 {
     /**
-     * Controller constructor.
-     * На вход приниманиет di контейнер
-     * @param $di
+     * @var DI
      */
-    public function __construct($di)
-    {
+    protected $di;
 
+    protected $db;
+
+    /**
+     * На вход приниманиет di контейнер
+     * Controller constructor.
+     * @param DI $di
+     */
+    public function __construct(DI $di)
+    {
+        $this->di = $di;
     }
 }

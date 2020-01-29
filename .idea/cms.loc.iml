@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/engine" isTestSource="false" packagePrefix="Engine\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/cms" isTestSource="false" packagePrefix="Cms\" />
       <sourceFolder url="file://$MODULE_DIR$/engine/DI" isTestSource="false" packagePrefix="Engine\DI\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
     </content>
