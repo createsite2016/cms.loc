@@ -2,6 +2,8 @@
 // точка запуска моего приложения
 namespace Engine;
 
+use Engine\Helper\Common;
+
 class Cms
 {
     /**
@@ -27,9 +29,11 @@ class Cms
      */
     public function run()
     {
-        //$this->router->add('home', '/', 'HomeController:index');
-        //$this->router->add('product', '/product/{id}', 'ProductController:index');
+        $this->router->add('home', '/', 'HomeController:index');
+        $this->router->add('product', '/product/12', 'ProductController:index');
 
-        print_r($this->di);
+        $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
+        //print_r($this->di);
+        print_r($routerDispatch);
     }
 }
