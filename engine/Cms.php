@@ -3,6 +3,7 @@
 namespace Engine;
 
 use Engine\Core\Router\DispatchedRoute;
+use Engine\DI\DI;
 use Engine\Helper\Common;
 
 class Cms
@@ -18,7 +19,7 @@ class Cms
      * CMS конструктор, сюда передаются все зависимости
      * @param $di
     */
-    public function __construct($di)
+    public function __construct(DI $di)
     {
         $this->di = $di;
         $this->router = $this->di->get('router');
@@ -31,9 +32,8 @@ class Cms
     public function run()
     {
         try {
-            $this->router->add('home', '/', 'HomeController:index');
-            $this->router->add('news', '/news', 'HomeController:news');
-            $this->router->add('news_single', '/news/(id:int)', 'HomeController:news');
+
+            require_once __DIR__ . '/../cms/Route.php';
 
             $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
 

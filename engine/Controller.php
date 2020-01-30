@@ -15,6 +15,8 @@ abstract class Controller
 
     protected $db;
 
+    protected $view;
+
     /**
      * На вход приниманиет di контейнер
      * Controller constructor.
@@ -23,5 +25,6 @@ abstract class Controller
     public function __construct(DI $di)
     {
         $this->di = $di;
+        $this->view = $this->di->get('view');
     }
 }
