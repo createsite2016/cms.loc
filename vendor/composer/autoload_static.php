@@ -16,6 +16,10 @@ class ComposerStaticInitd5fa56a7b5975f3b9461d7ef45277646
         array (
             'Cms\\' => 4,
         ),
+        'A' => 
+        array (
+            'Admin\\' => 6,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -30,6 +34,10 @@ class ComposerStaticInitd5fa56a7b5975f3b9461d7ef45277646
         'Cms\\' => 
         array (
             0 => __DIR__ . '/../..' . '/cms',
+        ),
+        'Admin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/admin',
         ),
     );
 
