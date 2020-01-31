@@ -21,13 +21,14 @@ class View
     }
 
     /**
+     * Отображает шаблон на наличие, и отображает его с возможностью передачи массива с данными внутрь
      * @param $template
      * @param array $vars
      * @throws \Exception
      */
     public function render($template, $vars = [])
     {
-        $templatePath = ROOT_DIR . '/content/themes/default/' . $template . '.php';
+        $templatePath = $this->getTemplatePath($template, ENV);
 
         if(!is_file($templatePath)) // если нет файла шаблона
         {
@@ -50,5 +51,20 @@ class View
         }
 
         echo ob_get_clean(); // получаю и вывожу содержимое всего буфера и после этого очищаю его
+    }
+
+    // получает путь к темплейтам
+    public function getTemplatePath($template, $env = null)
+    {
+        switch ($env){
+            case 'Admin':
+                return ROOT_DIR . '/View/' . $template . '.php';
+                break;
+            case 'Cms':
+                return ROOT_DIR . '/content/themes/default/' . $template . '.php';
+                break;
+            default:
+                return ROOT_DIR . '/View/' . $template . '.php';
+        }
     }
 }
