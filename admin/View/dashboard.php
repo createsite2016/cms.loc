@@ -53,8 +53,8 @@
             </div>
 
             <div class="right-toolbar">
-                <a href="#">
-                    <i class="icon-logout icons"></i> Logout
+                <a href="?logout=1">
+                    <i class="icon-logout icons"></i> Выйти
                 </a>
             </div>
         </div>
