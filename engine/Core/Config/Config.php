@@ -25,7 +25,7 @@ class Config
 
         if(file_exists($path))
         {
-            $items = require_once $path;
+            $items = require $path;
 
             if(is_array($items))
             {
