@@ -30,10 +30,10 @@
 
 <div class="container">
 
-    <form class="form-signin" role="form">
+    <form class="form-signin" role="form" method="POST" action="/admin/auth/">
         <h2 class="form-signin-heading">Авторизация</h2>
-        <input type="email" class="form-control" placeholder="Емаил" required autofocus>
-        <input type="password" class="form-control" placeholder="Пароль" required>
+        <input type="email" name="email" class="form-control" placeholder="Емаил" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Пароль" required>
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> Запомнить меня
         </label>
