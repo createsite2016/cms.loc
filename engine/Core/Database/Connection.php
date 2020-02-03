@@ -38,22 +38,28 @@ class Connection
 
     /**
      * Подготавливает SQL запрос и возвращает индинтификатор запроса
+     * @param $sql
+     * @param array $values
+     * @return mixed
      */
-    public function execute($sql)
+    public function execute($sql, $values = [])
     {
         $sth = $this->link->prepare($sql); // prepare подготавливает запрос к его выполнению
 
-        return $sth->execute(); // возвращаю подготовленный запрос
+        return $sth->execute($values); // возвращаю подготовленный запрос
     }
 
     /**
      * Выполняет запрос, получает ассоциативный массив
+     * @param $sql
+     * @param array $values
+     * @return array
      */
-    public function query($sql)
+    public function query($sql, $values = [])
     {
         $sth = $this->link->prepare($sql); // prepare подготавливает запрос к его выполнению
 
-        $sth->execute(); // возвращаю подготовленный запрос
+        $sth->execute($values); // возвращаю подготовленный запрос
 
         $result = $sth->FetchAll(PDO::FETCH_ASSOC); // передаю параметр FETCH_ASSOC - получить асоциативный массив
 
